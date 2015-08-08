@@ -4,7 +4,7 @@
 # File: re-assinar-zona-PK                               /\
 # Type: C Shell Script                                  /_.\
 # By Fernando Gilli fernando<at>wekers(dot)org    _,.-'/ `",\'-.,_
-# Last modified:2015-02-10                     -~^    /______\`~~-^~:
+# Last modified:2015-08-08                     -~^    /______\`~~-^~:
 # ----------
 # Re-signing DNSSEC Zone ZSK with method pre-publish
 # After pass time of TTL, we need rollover key with
@@ -54,7 +54,16 @@ cp $ZONEDIR/${NomeDominio}.zone $ZONEDIR/${NomeDominio}.zone.orig
 
 # Create a new ZSK key
 echo "Creating new Key ZSK"
-set NovaKey=`ldns-keygen -a RSASHA256 -b 1024 ${NomeDominio}`
+
+###############
+# ATTENTION ###
+# Here set algorithm equal you did to sign in first time, also to key length for both (KSK and ZSK)
+# eg: when you created DNSSEC in first time,
+# you setting sign RSASHA256 and now you set RSASHA512 there's a problem
+# your sign will be invalidated
+
+#set NovaKey=`ldns-keygen -a RSASHA256 -b 1024 ${NomeDominio}`
+set NovaKey=`ldns-keygen -a RSASHA512 -b 2048 ${NomeDominio}`
 
 # Add the new key to zone
 echo "Adding new key to zone"
@@ -106,7 +115,7 @@ chmod 640 $ZONEDIR/${NomeDominio}.zone.temp.rk
 
 # Move current key ZSK to backup folder
 echo "moving current ZSK to backup"
-mv $ZONEDIR/${zskFile}.* $ZONEDIR/pk-backup/
+mv ${zskFile}.* $ZONEDIR/pk-backup/
 # Move new key ZSK to /Keys folder
 echo "moving new key to /keys folder"
 mv $ZONEDIR/${NovaKey}.* $ZONEDIR/keys/
