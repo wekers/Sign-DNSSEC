@@ -71,6 +71,20 @@ chmod 640 $ZONEDIR/*.signed
 # Remove temporary file with old key used in rollover method
 rm $ZONEDIR/${NomeDominio}.zone.temp.rk
 
+# Delete backup files oldest than 90 days
+# ########
+# # max age to keep files of backups in hours
+set maxage="2160" # 90 days
+
+@ days = $maxage / 24
+
+if ( -f "/usr/local/sbin/tmpwatch" ) then
+        echo "Delete backup files oldest than $days days"
+         /usr/local/sbin/tmpwatch $maxage $ZONEDIR/backup/
+else
+        echo "tmpwatch not found"
+endif
+
 # Reload nsd and notify slave
 echo "Reloading NSD.."
 nsd-control reload
@@ -81,4 +95,3 @@ cd $PDIR
 exit 0
 
 #EOF
-
