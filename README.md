@@ -42,6 +42,7 @@ Create:
 Place those files on `/etc/nsd/master/scripts` folder
 
 Add on crontab to run
+
 `first "re-assinar-zona-PK"`
 
 `Second "re-assinar-zona-RK"`
@@ -76,7 +77,7 @@ make your choice
 - - -
 
 - - -
-##### When i did some changes on zone
+##### When i did some changes on zone:
 
 Just run file "**assinar-zona**" and the script will detect last re-sign method and sign like before
 - - -
