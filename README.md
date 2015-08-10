@@ -8,7 +8,7 @@ _ _ _
 - - -
 - - -
 
-##### ++++Resign the zone every month++++
+##### Resign the zone every month
 
 By default these RRSIG records have a limited lifetime which by default is 28 days. Once this period is over, these results are no longer considered valid. To prevent this you have to resign the zone
 
@@ -26,7 +26,7 @@ By default these RRSIG records have a limited lifetime which by default is 28 da
 
 ### ====Usage:====
 
- - #####++++Automatic Maintenance Sign++++
+ - ##### Automatic Maintenance Sign
 
 E.g. Default zone dir is: `/etc/nsd/master` 
 
