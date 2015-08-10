@@ -26,21 +26,26 @@ By default these RRSIG records have a limited lifetime which by default is 28 da
 
 ### ====Usage:====
 
- - ##### Automatic Maintenance Sign
+##### Automatic Maintenance Sign:
 
 E.g. Default zone dir is: `/etc/nsd/master` 
 
 Create:
 `/etc/nsd/master/scripts`
+
 `/etc/nsd/master/keys`
+
 `/etc/nsd/master/backup`
+
 `/etc/nsd/master/pk-backup`
 
 Place those files on `/etc/nsd/master/scripts` folder
 
 Add on crontab to run
 `first "re-assinar-zona-PK"`
+
 `Second "re-assinar-zona-RK"`
+
 `Last "re-assinar-zona-CL"`
 
 e.g. `/etc/crontab:`
@@ -68,7 +73,7 @@ make your choice
 - - -
 
 - - -
-- ##### When i did some changes on zone
+##### When i did some changes on zone
 
 Just run file "**assinar-zona**" and the script will detect last re-sign method and sign like before
 - - -
