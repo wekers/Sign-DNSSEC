@@ -103,7 +103,14 @@ Just run file "**assinar-zona**" and the script will detect last re-sign method 
 - - -
 - - -
 - - -
+### In Action - Diagram:
+![](http://wekers.org/git/dnssec-pk.jpg)
+![](http://wekers.org/git/dnssec-rk.jpg)
+![](http://wekers.org/git/dnssec-cl.jpg)
 
+
+- - -
+- - -
 
 ##### NOTE: Algorithm Rollovers
 
