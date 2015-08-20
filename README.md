@@ -1,8 +1,3 @@
-<script>
-  $('.post a').attr('target', '_blank');
-  $('h2.post-title a').attr('target', '_self');
-</script>
-
 # Sign-DNSSEC
 _ _ _
 ###### Automatic Maintenance for Signing and Re-Signing DNSSEC Zone with Pre-Publish and Rollover Keys (ZSK)
@@ -96,7 +91,7 @@ Just run file "**assinar-zona**" and the script will detect last re-sign method 
 
 * Tools:
 	+ FreeBSD/OpenBSD
- - [LDNS](http://www.nlnetlabs.nl/projects/ldns/) >= 1.6.17
+ - [LDNS](http://www.nlnetlabs.nl/projects/ldns/)# >= 1.6.17
  - [NSD](http://www.nlnetlabs.nl/projects/nsd/) > 4.0.0
  - Perl5
  - tmpwatch [sysutils/tmpwatch](http://www.freshports.org/sysutils/tmpwatch/)
