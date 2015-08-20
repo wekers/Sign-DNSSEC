@@ -91,7 +91,7 @@ Just run file "**assinar-zona**" and the script will detect last re-sign method 
 
 * Tools:
 	+ FreeBSD/OpenBSD
- - [LDNS](http://www.nlnetlabs.nl/projects/ldns/){target="_blank"} >= 1.6.17
+ - [LDNS](http://www.nlnetlabs.nl/projects/ldns/ target="_blank") >= 1.6.17
  - [NSD](http://www.nlnetlabs.nl/projects/nsd/) > 4.0.0
  - Perl5
  - tmpwatch [sysutils/tmpwatch](http://www.freshports.org/sysutils/tmpwatch/)
