@@ -91,7 +91,7 @@ Just run file "**assinar-zona**" and the script will detect last re-sign method 
 
 * Tools:
 	+ FreeBSD/OpenBSD
- - [LDNS](http://www.nlnetlabs.nl/projects/ldns/){:target="_blank"} >= 1.6.17
+ - [LDNS](http://www.nlnetlabs.nl/projects/ldns/) >= 1.6.17
  - [NSD](http://www.nlnetlabs.nl/projects/nsd/) > 4.0.0
  - Perl5
  - tmpwatch [sysutils/tmpwatch](http://www.freshports.org/sysutils/tmpwatch/)
@@ -136,4 +136,3 @@ The above only allows you to do key rollovers while sticking to the same algorit
 
 
 [^]: The **.tcsh** extension in file it is not necessary, has placed only for github detect correct syntax highlighting language on source
-Query(document).ready(function($){$('.gist-meta').find('a').attr('target', '_blank'); });
