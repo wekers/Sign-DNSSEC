@@ -1,3 +1,8 @@
+<script>
+  $('.post a').attr('target', '_blank');
+  $('h2.post-title a').attr('target', '_self');
+</script>
+
 # Sign-DNSSEC
 _ _ _
 ###### Automatic Maintenance for Signing and Re-Signing DNSSEC Zone with Pre-Publish and Rollover Keys (ZSK)
