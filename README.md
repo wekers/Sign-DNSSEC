@@ -114,7 +114,8 @@ Just run file "**assinar-zona**" and the script will detect last re-sign method 
 
 ### Security Tips
 
-*Note the ****DNSSEC*** have a Potential for DNS amplification attack
+*Note the ****DNSSEC**** have a Potential for DNS amplification attack
+
 to prevent, Implement some practices:
 
 
