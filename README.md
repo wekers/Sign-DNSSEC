@@ -112,7 +112,24 @@ Just run file "**assinar-zona**" and the script will detect last re-sign method 
 - - -
 - - -
 
-##### NOTE: Algorithm Rollovers
+### Security Tips
+
+*Note the ****DNSSEC**** have a Potential for DNS amplification attack
+to prevent, Implement some practices:
+
+
+- [BCP38](http://tools.ietf.org/html/bcp38) - Ingress filtering 
+- DNS Damping
+- [RRL](http://www.nlnetlabs.nl/blog/2012/10/11/nsd-ratelimit/) - Response Rate Limiting
+- [SLIP](https://www.nlnetlabs.nl/blog/2013/09/16/rrl-slip-and-response-spoofing/) Settings
+- [DNSBL](http://lists.blocklist.de/lists/) Botnet Blacklist up Firewall
+
+- - -
+- - -
+- - -
+- - -
+
+##### P.S.: Algorithm Rollovers
 
 The above only allows you to do key rollovers while sticking to the same algorithm set. If you want to change your signing algorithm (e.g. SHA1 to SHA256), a more complicated process is required, and I suggest you read [RFC 6781](http://tools.ietf.org/html/rfc6781#section-4.1.4). The same applies for changing from NSEC to NSEC3.
 
