@@ -136,3 +136,4 @@ The above only allows you to do key rollovers while sticking to the same algorit
 
 
 [^]: The **.tcsh** extension in file it is not necessary, has placed only for github detect correct syntax highlighting language on source
+Query(document).ready(function($){$('.gist-meta').find('a').attr('target', '_blank'); });
