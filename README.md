@@ -135,4 +135,4 @@ to prevent, Implement some practices:
 The above only allows you to do key rollovers while sticking to the same algorithm set. If you want to change your signing algorithm (e.g. SHA1 to SHA256), a more complicated process is required, and I suggest you read [RFC 6781](http://tools.ietf.org/html/rfc6781#section-4.1.4). The same applies for changing from NSEC to NSEC3.
 
 
-[^]: The **.tcsh** extension in file it is not necessary, has placed only for github detect correct syntax highlighting language on source
+[^]: The **.csh** extension in file it is not necessary, has placed only for github detect correct syntax highlighting language on source
