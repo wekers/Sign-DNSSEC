@@ -4,7 +4,7 @@
 # File: re-assinar-zona-PK                               /\
 # Type: C Shell Script                                  /_.\
 # By Fernando Gilli fernando<at>wekers(dot)org    _,.-'/ `",\'-.,_
-# Last modified:2015-08-08                     -~^    /______\`~~-^~:
+# Last modified:2016-05-23                     -~^    /______\`~~-^~:
 # ----------
 # Re-signing DNSSEC Zone ZSK with method pre-publish
 # After pass time of TTL, we need rollover key with
@@ -28,7 +28,7 @@
 # uncomment nonomatch if need debug
 #set nonomatch
 
-set PDIR=`pwd`
+set PDIR=`/bin/pwd`
 
 # Set domain name
 set NomeDominio="domain.com"
@@ -43,14 +43,14 @@ cd $ZONEDIR
 
 # Change serial zone in format yymmddhh
 echo "Setting new Serial to Zone"
-set OT=`grep serial $ZONEDIR/${NomeDominio}.zone | awk '{print $1}'`
-set NT=`date +%Y%m%d%H`
-perl -p -i -e "s/${OT}/${NT}/" $ZONEDIR/${NomeDominio}.zone
+set OT=`/usr/bin/grep serial $ZONEDIR/${NomeDominio}.zone | /usr/bin/awk '{print $1}'`
+set NT=`/bin/date +%Y%m%d%H`
+/usr/bin/perl -p -i -e "s/${OT}/${NT}/" $ZONEDIR/${NomeDominio}.zone
 
 echo "New SOA Serial: ${NT}"
 
 # Create a copy of original zone
-cp $ZONEDIR/${NomeDominio}.zone $ZONEDIR/${NomeDominio}.zone.orig
+/bin/cp $ZONEDIR/${NomeDominio}.zone $ZONEDIR/${NomeDominio}.zone.orig
 
 # Create a new ZSK key
 echo "Creating new Key ZSK"
@@ -63,73 +63,73 @@ echo "Creating new Key ZSK"
 # your sign will be invalidated
 
 #set NovaKey=`ldns-keygen -a RSASHA256 -b 1024 ${NomeDominio}`
-set NovaKey=`ldns-keygen -a RSASHA512 -b 2048 ${NomeDominio}`
+set NovaKey=`/usr/local/bin/ldns-keygen -a RSASHA512 -b 2048 ${NomeDominio}`
 
 # Add the new key to zone
 echo "Adding new key to zone"
-cat $ZONEDIR/${NovaKey}.key >> $ZONEDIR/${NomeDominio}.zone
+/bin/cat $ZONEDIR/${NovaKey}.key >> $ZONEDIR/${NomeDominio}.zone
 
 # Copy new key to a temporary file
 echo "Doing copy of new key to $ZONEDIR/${NomeDominio}.zone.temp.pk"
-cat $ZONEDIR/${NovaKey}.key > $ZONEDIR/${NomeDominio}.zone.temp.pk
+/bin/cat $ZONEDIR/${NovaKey}.key > $ZONEDIR/${NomeDominio}.zone.temp.pk
 
 # Set Permissions
-chmod 640 $ZONEDIR/${NomeDominio}.zone.temp.pk
+/bin/chmod 640 $ZONEDIR/${NomeDominio}.zone.temp.pk
 
 echo "Key: ${NovaKey} added"
 
 # Remove current .signed zone
-rm $ZONEDIR/${NomeDominio}.zone.signed
+/bin/rm $ZONEDIR/${NomeDominio}.zone.signed
 
 # Signing the zone with current ZSK and new ZSK was added in zone file
 # #####################
 echo "Re-Signing Zone"
 # Search for KSK key name
-set kskFile=`grep "ksk" -l $ZONEDIR/keys/K${NomeDominio}*.key | sed 's/\.key//'`
+set kskFile=`/usr/bin/grep "ksk" -l $ZONEDIR/keys/K${NomeDominio}*.key | /usr/bin/sed 's/\.key//'`
 # Search for ZSK key name
-set zskFile=`grep "zsk" -l $ZONEDIR/keys/K${NomeDominio}*.key | sed 's/\.key//'`
+set zskFile=`/usr/bin/grep "zsk" -l $ZONEDIR/keys/K${NomeDominio}*.key | /usr/bin/sed 's/\.key//'`
 
 
 echo "Signing with same and current key"
 
 # Signing
-ldns-signzone -n $ZONEDIR/${NomeDominio}.zone ${kskFile} ${zskFile}
+/usr/local/bin/ldns-signzone -n $ZONEDIR/${NomeDominio}.zone ${kskFile} ${zskFile}
 
 echo "ksk = ${kskFile}"
 echo "zsk = ${zskFile}"
 # #####################
 
 # Set permissions
-chmod 640 $ZONEDIR/*.signed
+/bin/chmod 640 $ZONEDIR/*.signed
 
 # Replace original zone that was copied previously without the new ZSK key that was placed in zone file
-mv $ZONEDIR/${NomeDominio}.zone.orig $ZONEDIR/${NomeDominio}.zone
+/bin/mv $ZONEDIR/${NomeDominio}.zone.orig $ZONEDIR/${NomeDominio}.zone
 
 ###################
 # Add the current key that was be old key a one temporary file, for able to do the next signing programmed, called "Roll the keys"
-cat ${zskFile}.key > $ZONEDIR/${NomeDominio}.zone.temp.rk
+/bin/cat ${zskFile}.key > $ZONEDIR/${NomeDominio}.zone.temp.rk
 ###################
 
 # Set permissions
-chmod 640 $ZONEDIR/${NomeDominio}.zone.temp.rk
+/bin/chmod 640 $ZONEDIR/${NomeDominio}.zone.temp.rk
 
 # Move current key ZSK to backup folder
 echo "moving current ZSK to backup"
-mv ${zskFile}.* $ZONEDIR/pk-backup/
+/bin/mv ${zskFile}.* $ZONEDIR/pk-backup/
 # Move new key ZSK to /Keys folder
 echo "moving new key to /keys folder"
-mv $ZONEDIR/${NovaKey}.* $ZONEDIR/keys/
+/bin/mv $ZONEDIR/${NovaKey}.* $ZONEDIR/keys/
 
 # Set permissionss
 echo "Setting permissions.."
-chmod 640 $ZONEDIR/keys/${NovaKey}.*
-chmod 640 $ZONEDIR/backup/*
-chmod 640 $ZONEDIR/pk-backup/*
+/bin/chmod 640 $ZONEDIR/keys/${NovaKey}.*
+/bin/chmod 640 $ZONEDIR/backup/*
+/bin/chmod 640 $ZONEDIR/pk-backup/*
 
 # Reload nsd and notify slave
 echo "Reloading NSD..."
-nsd-control reload
-nsd-control notify
+/usr/local/sbin/nsd-control reload
+/usr/local/sbin/nsd-control notify
 
 cd $PDIR
 
